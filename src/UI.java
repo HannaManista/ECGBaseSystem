@@ -285,7 +285,7 @@ public class UI implements ActionListener, MouseListener{
 			if(sprawdzDane()) {
 				pesel = Long.parseLong(textPesel.getText());
 				if(bazaPacjentow.checkPesel(pesel)) {
-					BazaPacjentow.addPatient(imie, nazwisko, pesel);
+					bazaPacjentow.addPatient(imie, nazwisko, pesel);
 					pokazTabele();
 					id++;
 					//bazaPacjentow.display();
