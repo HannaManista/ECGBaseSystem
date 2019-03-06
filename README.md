@@ -2,6 +2,8 @@
 
 **Temat:** System elektronicznych kart badań kardiologicznych. 
 
+**Autorzy:** Hanna Manista, Aleksandra Budzyńska
+
 **Biblioteki:** 
 import java.awt.BorderLayout;
 import java.awt.Color;
