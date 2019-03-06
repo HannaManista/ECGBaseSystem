@@ -1,14 +1,6 @@
 ## osm18L_projekt2
 
-**Przedmiot:** OSM
-
-**Projekt:** 2
-
-**Zadanie:** 9
-
-**Temat:** System elektronicznych kart badañ kardiologicznych. 
-
-**Zespol:** Aleksandra Budzyñska, Hanna Manista
+**Temat:** System elektronicznych kart badaÅ„ kardiologicznych. 
 
 **Biblioteki:** 
 import java.awt.BorderLayout;
@@ -46,22 +38,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 
-**Uwagi dodatkowe:** Projekt zawiera dwie klasy UI oraz BazaPacjentow. W pierwszej z nich znajduje siê obs³uga okna
-u¿ytkownika, w drugiej zaœ wszystkie potrzebne metody do obs³ugi bazy danych.
+**Uwagi dodatkowe:** Projekt zawiera dwie klasy UI oraz BazaPacjentow. W pierwszej z nich znajduje siÄ™ obsÅ‚uga okna
+uÅ¼ytkownika, w drugiej zaÅ› wszystkie potrzebne metody do obsÅ‚ugi bazy danych.
 
-Przycisk "Dodaj pacjenta" - aktywuje panel dodawania pacjenta, wszystkie dane zapisywane w oknie s¹ sprawdzane
-pod k¹tem poprawnoœci sprowadzanych danych oraz PESELU (sprawdzanie czy w bazie danych ju¿ istnieje osoba z takim PESELEM).
+Przycisk "Dodaj pacjenta" - aktywuje panel dodawania pacjenta, wszystkie dane zapisywane w oknie sÄ… sprawdzane
+pod kÄ…tem poprawnoÅ›ci sprowadzanych danych oraz PESELU (sprawdzanie czy w bazie danych juÅ¼ istnieje osoba z takim PESELEM).
 
-Przycisk "Zapisz" - zapisuje dane pacjenta lub badania, sprawdza ich poprawnoœæ
+Przycisk "Zapisz" - zapisuje dane pacjenta lub badania, sprawdza ich poprawnoÅ›Ä‡
 
-Przycisk "Anuluj" - anuluje zapisywanie danych pacjenta, czyœci pola i dezaktywuje mo¿liwoœæ dodania danych
+Przycisk "Anuluj" - anuluje zapisywanie danych pacjenta, czyÅ›ci pola i dezaktywuje moÅ¼liwoÅ›Ä‡ dodania danych
 
-Przycisk "Usuñ pacjenta" - usuwa pacjenta z bazy oraz tabeli, dodatkowo usuwa wszystkie badania z nim zwi¹zane.
+Przycisk "UsuÅ„ pacjenta" - usuwa pacjenta z bazy oraz tabeli, dodatkowo usuwa wszystkie badania z nim zwiÄ…zane.
 
-Przycisk "Oblicz " - oblicza wartoœæ œrednia, minimum, maksimum oraz tworzy wykres danych wybranych za pomoc¹
-rozwijanej listy "Têtno", "Ciœnienie skurczowe", "Ciœnienie rozkurczowe"
+Przycisk "Oblicz " - oblicza wartoÅ›Ä‡ Å›rednia, minimum, maksimum oraz tworzy wykres danych wybranych za pomocÄ…
+rozwijanej listy "TÄ™tno", "CiÅ›nienie skurczowe", "CiÅ›nienie rozkurczowe"
 
-Aktywacja pola badania oraz rysowania wykresu dokonuje siê w momencie wybrania u¿ytkownika z listy, u¿ytkownikowi 
-wybranemu z listy albo przypisywane jest kolejne badanie albo wykonywany jest wykres z danych, które go dotycz¹.
+Aktywacja pola badania oraz rysowania wykresu dokonuje siÄ™ w momencie wybrania uÅ¼ytkownika z listy, uÅ¼ytkownikowi 
+wybranemu z listy albo przypisywane jest kolejne badanie albo wykonywany jest wykres z danych, ktÃ³re go dotyczÄ….
 
 
