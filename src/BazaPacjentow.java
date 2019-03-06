@@ -18,7 +18,7 @@ public class BazaPacjentow {
 
 
 
-	// utworzenie po³¹czenia z baz¹ danych
+	// utworzenie poÅ‚Ä…czenia z bazÄ… danych
 	public void createConnection() {
 		try {
 			this.connection = DriverManager.getConnection(JDBC_URL);
@@ -27,17 +27,16 @@ public class BazaPacjentow {
 			}
 		}
 		catch(SQLException e){
-			System.out.print("Nie uda³o siê po³¹czyæ!");
+			System.out.print("Nie udaÅ‚o siÄ™ poÅ‚Ä…czyÄ‡!");
 		}
 	}
-
-
+	
 	// pobranie informacji o bazie danych i utworzenie obiektu zapytania
 	public void checkDB() {
 		try{
 			dbmd = connection.getMetaData();
 			statement = connection.createStatement();
-			System.out.println("\nSprawdzono bazê danych");
+			System.out.println("\nSprawdzono bazÄ™ danych");
 		}
 		catch(SQLException e){
 			e.getStackTrace();
@@ -92,7 +91,7 @@ public class BazaPacjentow {
 			statement.execute("insert into pacjenci values ("+PESEL+",'"+ imie + "', '"+ nazwisko + "')");
 
 		}catch(SQLException e) {
-			System.out.println("Nie uda³o siê wpisaæ u¿ytkownika!");
+			System.out.println("Nie udaÅ‚o siÄ™ wpisaÄ‡ uÅ¼ytkownika!");
 		}
 	}
 
@@ -100,7 +99,7 @@ public class BazaPacjentow {
 	public static void addBadanie(int id, int skurcz, int rozkurcz, int tetno, long pesel) {
 		try {
 			statement.execute("insert into badanie values (" + id + ", "+ skurcz + ", "+ rozkurcz+" , " + tetno +", " + pesel +" )");
-		}catch(SQLException e) {System.out.println("Nie uda³o siê wpisaæ badania!");}
+		}catch(SQLException e) {System.out.println("Nie udaÅ‚o siÄ™ wpisaÄ‡ badania!");}
 	}
 
 	//wypisanie zawartosci tabeli pacjenci(uporzadkowanej po nazwisku)
@@ -111,11 +110,11 @@ public class BazaPacjentow {
 			while (result.next())
 				System.out.println( result.getString("imie") + "\t" + result.getString("nazwisko")+ "\t" + result.getLong("PESEL"));
 		}catch(SQLException e) {
-			System.out.println("Nie uda³o siê wypisaæ danych!");
+			System.out.println("Nie udaÅ‚o siÄ™ wypisaÄ‡ danych!");
 			e.getStackTrace();}
 	}
 
-	// wypisanie zawartoœci tabeli badanie
+	// wypisanie zawartoÅ›ci tabeli badanie
 	public void displayExam() {
 		try {
 			System.out.println("\nRekordy tabeli badanie:");
@@ -123,7 +122,7 @@ public class BazaPacjentow {
 			while (result.next())
 				System.out.println(result.getLong("PESEL")+ "\t"+result.getInt("id_badania") + "\t"+ result.getInt("cisnienie_skurczowe") + "\t" + result.getInt("cisnienie_rozkurczowe")+ "\t" + result.getInt("tetno"));
 		}catch(SQLException e) {
-			System.out.println("Nie uda³o siê wypisaæ danych!");
+			System.out.println("Nie udaÅ‚o siÄ™ wypisaÄ‡ danych!");
 			e.getStackTrace();}
 	}
 
@@ -136,7 +135,7 @@ public class BazaPacjentow {
 			System.out.println();
 		}
 		catch(SQLException e) {
-			System.out.println("Nie uda³o siê usun¹æ wpisu z tabeli pacjentów");
+			System.out.println("Nie udaÅ‚o siÄ™ usunÄ…Ä‡ wpisu z tabeli pacjentÃ³w");
 		}
 	}
 
@@ -146,7 +145,7 @@ public class BazaPacjentow {
 			statement.execute("DROP TABLE pacjenci");
 			statement.execute("DROP TABLE badanie");
 		}catch(SQLException e) {
-			System.out.println("Nie uda³o siê usun¹æ tabeli!");
+			System.out.println("Nie udaÅ‚o siÄ™ usunÄ…Ä‡ tabeli!");
 		}
 	}
 
@@ -164,7 +163,7 @@ public class BazaPacjentow {
 			se.getMessage();
 		}}
 
-	// zwraca false, gdy pesel ju¿ istnieje
+	// zwraca false, gdy pesel juÅ¼ istnieje
 	public boolean checkPesel(long pesel) {
 
 		try { 
@@ -172,12 +171,12 @@ public class BazaPacjentow {
 			if (rezultaty.next()) {
 				return false;}
 		} catch(SQLException e) {
-			System.out.println("B³¹d przy sprawdzaniu peselu  " + e.getMessage());
+			System.out.println("BÅ‚Ä…d przy sprawdzaniu peselu  " + e.getMessage());
 		}
 		return true;
 	}
 
-	// pobiera liste pacjentów z bazy danych
+	// pobiera liste pacjentÃ³w z bazy danych
 	public ArrayList<String []> pobierzDanePacjentow() {
 		ArrayList<String []> lista  = new ArrayList();
 
@@ -192,23 +191,23 @@ public class BazaPacjentow {
 
 		}
 		catch(SQLException e) {
-			System.out.println("Nie uda³o siê pobraæ danych " + e.getMessage());
+			System.out.println("Nie udaÅ‚o siÄ™ pobraÄ‡ danych " + e.getMessage());
 		}
 		return lista;
 	}
 
-	// pobiera liste z parametrem têtno, ciœnienie skurczowe lub ciœnienie rozkurczowe dla wybranej osoby
+	// pobiera liste z parametrem tÄ™tno, ciÅ›nienie skurczowe lub ciÅ›nienie rozkurczowe dla wybranej osoby
 	public ArrayList<Integer> pobierzDaneBadanie(long pesel, String wybor_box) {
 		ArrayList<Integer> dane = new ArrayList();
 		try {
 			String wybor ="";
-			if(wybor_box.equals("Têtno")) {
+			if(wybor_box.equals("TÄ™tno")) {
 				wybor = "tetno";
 			}
-			if(wybor_box.equals("Ciœnienie skurczowe")) {
+			if(wybor_box.equals("CiÅ›nienie skurczowe")) {
 				wybor = "cisnienie_skurczowe";
 			}
-			if(wybor_box.equals("Ciœnienie rozkurczowe")) {
+			if(wybor_box.equals("CiÅ›nienie rozkurczowe")) {
 				wybor="cisnienie_rozkurczowe";
 			}
 
@@ -220,7 +219,7 @@ public class BazaPacjentow {
 
 		}
 		catch(SQLException e) {
-			System.out.println("Nie uda³o siê pobraæ danych! " + e.getMessage());
+			System.out.println("Nie udaÅ‚o siÄ™ pobraÄ‡ danych! " + e.getMessage());
 		}
 		return dane;
 	}
