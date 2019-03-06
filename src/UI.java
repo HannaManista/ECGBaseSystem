@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class UI implements ActionListener, MouseListener{
 	
-	// zmienne wystêpuj¹ce w ca³ej klasie
+	// zmienne wystÄ™pujÄ…ce w caÅ‚ej klasie
 	private static JFrame frame;
 	private JFrame frame2;
 	private static JTextField textPesel;
@@ -60,7 +60,7 @@ public class UI implements ActionListener, MouseListener{
 	private static DefaultTableModel model ;
 
 	/**
-	 * Uruchomienie aplikacji, po³¹czenie z baz¹ danych i ustawienie pocz¹tkowych ustawieñ w panelu g³ównym
+	 * Uruchomienie aplikacji, poÅ‚Ä…czenie z bazÄ… danych i ustawienie poczÄ…tkowych ustawieÅ„ w panelu gÅ‚Ã³wnym
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -72,7 +72,7 @@ public class UI implements ActionListener, MouseListener{
 					System.out.println("Sterownik bazy danych zostal uruchominy\n");
 					bazaPacjentow.createConnection();
 					bazaPacjentow.checkDB();
-					bazaPacjentow.deleteTables(); // usuniêcie tabeli, jeœli istnieje, tworzenie nowych tabeli pacjetnów i badania
+					bazaPacjentow.deleteTables(); // usuniÃªcie tabeli, jeÅ“li istnieje, tworzenie nowych tabeli pacjetnÃ³w i badania
 					bazaPacjentow.createTable();
 					bazaPacjentow.createTableExamine();
 					btnUsunPacjenta.setEnabled(false);
@@ -80,7 +80,7 @@ public class UI implements ActionListener, MouseListener{
 					zezwoleniePacjent(false);
 					zezwolenieOblicz(false);
 
-				} catch (Exception e) { // w przypadku b³êdu w uruchamianiu zamkniêcie po³¹czenia z baz¹ danych
+				} catch (Exception e) { // w przypadku bÅ‚Ä™du w uruchamianiu zamkniÄ™cie poÅ‚Ä…czenia z bazÄ… danych
 					e.printStackTrace();
 					bazaPacjentow.shutDown();
 				}
@@ -95,9 +95,6 @@ public class UI implements ActionListener, MouseListener{
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 589, 371);
@@ -124,7 +121,7 @@ public class UI implements ActionListener, MouseListener{
 		frame.getContentPane().add(textName);
 		textName.setColumns(10);
 
-		JLabel lblImi = new JLabel("Imiê");
+		JLabel lblImi = new JLabel("ImiÃª");
 		lblImi.setBounds(24, 11, 46, 14);
 		frame.getContentPane().add(lblImi);
 
@@ -143,9 +140,9 @@ public class UI implements ActionListener, MouseListener{
 
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(298, 214, 188, 20);
-		comboBox.addItem("Ciœnienie skurczowe");
-		comboBox.addItem("Ciœnienie rozkurczowe");
-		comboBox.addItem("Têtno");
+		comboBox.addItem("CiÅ“nienie skurczowe");
+		comboBox.addItem("CiÅ“nienie rozkurczowe");
+		comboBox.addItem("TÃªtno");
 		frame.getContentPane().add(comboBox);
 
 		JLabel lblRodzajParametru = new JLabel("Rodzaj parametru");
@@ -213,7 +210,7 @@ public class UI implements ActionListener, MouseListener{
 		frame.getContentPane().add(txtTetno);
 		txtTetno.setColumns(10);
 
-		lblTtno = new JLabel("Têtno");
+		lblTtno = new JLabel("TÃªtno");
 		lblTtno.setBounds(149, 254, 46, 23);
 		frame.getContentPane().add(lblTtno);
 
@@ -239,19 +236,18 @@ public class UI implements ActionListener, MouseListener{
 		scrollPane.setBounds(242, 11, 308, 131);
 		frame.getContentPane().add(scrollPane);
 
-		// tworzenie tabeli do wyœwietlania danych pacjenta
+		// tworzenie tabeli do wyÅ›wietlania danych pacjenta
 		table = new JTable();
 		table.addMouseListener(this);
 		model = new DefaultTableModel() {
 
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				//all cells false
 				return false;
 			}
 		};
 		table.setModel(model);
-		model.addColumn("Imiê");
+		model.addColumn("ImiÄ™");
 		model.addColumn("Nazwisko");
 		model.addColumn("PESEL");
 
@@ -259,12 +255,12 @@ public class UI implements ActionListener, MouseListener{
 		scrollPane.setViewportView(table);
 	}
 
-	// obs³uga przysicków
+	// obsÅ‚uga przyciskÃ³w
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object z= e.getSource();
 
-		if(z == btnDodajPacjenta) { // przycisk dodaj pacjenta powoduje odblokowanie mo¿liwoœci dodawania pacjenta do bazy danych
+		if(z == btnDodajPacjenta) { // przycisk dodaj pacjenta powoduje odblokowanie moÅ¼liwoÅ“ci dodawania pacjenta do bazy danych
 
 			zezwoleniePacjent(true);
 			zezwolenieBadanie(false);
@@ -277,7 +273,7 @@ public class UI implements ActionListener, MouseListener{
 			textSrednia.setText("");
 
 		}
-		if(z == btnZapisz) { // sprawdzenie poprawnoœci danych zapisywanych, wpisanie pacjenta do bazy i uaktualnienie tabeli wyœwietlaj¹cej pacjentów
+		if(z == btnZapisz) { // sprawdzenie poprawnoÅ›ci danych zapisywanych, wpisanie pacjenta do bazy i uaktualnienie tabeli wyÅ›wietlajÄ…cej pacjentÃ³w
 			String imie = textName.getText();
 			String nazwisko = textSurname.getText();
 			long pesel;
@@ -288,7 +284,6 @@ public class UI implements ActionListener, MouseListener{
 					bazaPacjentow.addPatient(imie, nazwisko, pesel);
 					pokazTabele();
 					id++;
-					//bazaPacjentow.display();
 					textName.setText("");
 					textPesel.setText("");
 					textSurname.setText("");
@@ -297,12 +292,12 @@ public class UI implements ActionListener, MouseListener{
 
 				}
 				else{
-					JOptionPane.showMessageDialog(frame, "Taki PESEL ju¿ istnieje!");
+					JOptionPane.showMessageDialog(frame, "Taki PESEL juÅ¼ istnieje!");
 				}
 
 			}
 		}
-		// zapisywanie badania do bazy danych, sprawdzanie jego poprawnoœci, przypisywanie go u¿ytkownikowi z wybranej listy (pesel)
+		// zapisywanie badania do bazy danych, sprawdzanie jego poprawnoÅ›ci, przypisywanie go uÅ¼ytkownikowi z wybranej listy (pesel)
 		if(z == btnZapisz_1) {
 
 			if(sprawdzBadanie()) {
@@ -314,7 +309,6 @@ public class UI implements ActionListener, MouseListener{
 				long pesel = Long.parseLong(pesel_slowo);
 
 				BazaPacjentow.addBadanie(id_b, cisSkurcz, cisRozkurcz, tetno, pesel);
-				//bazaPacjentow.displayExam();
 				id_b++;
 				txtTetno.setText("");
 				txtCisnienie_rozkurcz.setText("");
@@ -325,7 +319,7 @@ public class UI implements ActionListener, MouseListener{
 			}
 
 		}
-		//usuniêcie wybranego pacjenta wraz z jego badaniami, jeœli nie ma ¿adnych pacjentów w tabeli uniemo¿liwienie usuniêcia
+		//usuniÄ™cie wybranego pacjenta wraz z jego badaniami, jeÅ›li nie ma Å¼adnych pacjentÃ³w w tabeli uniemoÅ¼liwienie usuniÄ™cia
 		if(z == btnUsunPacjenta) {
 			int row = table.getSelectedRow();
 			String pesel_slowo = table.getModel().getValueAt(row, 2).toString();
@@ -345,7 +339,7 @@ public class UI implements ActionListener, MouseListener{
 			}
 		}
 
-		// anulowanie wpisu pacjenta powoduje zablokowanie mo¿liwoœci dodania wpisu, aby umo¿liwiæ dodanie wpisu nale¿y u¿yæ przycisku dodaj pacjenta
+		// anulowanie wpisu pacjenta powoduje zablokowanie moÅ¼liwoÅ›ci dodania wpisu, aby umoÅ¼liwiÄ‡ dodanie wpisu naleÅ¼y uÅ¼yÄ‡ przycisku dodaj pacjenta
 		if(z == btnAnuluj) {
 			zezwoleniePacjent(false);
 			textName.setText("");
@@ -353,7 +347,7 @@ public class UI implements ActionListener, MouseListener{
 			textPesel.setText("");
 		}
 
-		// obliczenie wartoœci wybranego parametru dla osoby wybranej z listy, wyœwietlany jest wykres danego parametru
+		// obliczenie wartoÅ“ci wybranego parametru dla osoby wybranej z listy, wyÅ›wietlany jest wykres danego parametru
 		if(z == btnOblicz) {
 
 			String wybrane;
@@ -366,7 +360,7 @@ public class UI implements ActionListener, MouseListener{
 			int min;
 			try {
 
-				if(wybrane.equals("Têtno")) {
+				if(wybrane.equals("TÄ™tno")) {
 					sr = obliczSrednia(pesel_pacjenta, wybrane);
 					min = znajdzMinimum(pesel_pacjenta, wybrane);
 					max = znajdzMaksimum(pesel_pacjenta, wybrane);
@@ -376,7 +370,7 @@ public class UI implements ActionListener, MouseListener{
 
 				}
 
-				if(wybrane.equals("Ciœnienie skurczowe")) {
+				if(wybrane.equals("CiÅ›nienie skurczowe")) {
 					sr = obliczSrednia(pesel_pacjenta, wybrane);
 					min = znajdzMinimum(pesel_pacjenta, wybrane);
 					max = znajdzMaksimum(pesel_pacjenta, wybrane);
@@ -386,7 +380,7 @@ public class UI implements ActionListener, MouseListener{
 
 				}
 
-				if(wybrane.equals("Ciœnienie rozkurczowe")) {
+				if(wybrane.equals("CiÅ›nienie rozkurczowe")) {
 					sr = obliczSrednia(pesel_pacjenta, wybrane);
 					min = znajdzMinimum(pesel_pacjenta, wybrane);
 					max = znajdzMaksimum(pesel_pacjenta, wybrane);
@@ -398,8 +392,8 @@ public class UI implements ActionListener, MouseListener{
 
 				stworzWykres(wybrane, pesel_pacjenta); 
 				zezwolenieBadanie(false);
-			} catch(Exception es) { // w przypadku braku danych z bazy dla danego pacjenta, wartoœci ustawiane s¹ na zero, wykres siê nie rysuje
-				JOptionPane.showMessageDialog(frame, "Nie mo¿na obliczyæ parametrów");
+			} catch(Exception es) { // w przypadku braku danych z bazy dla danego pacjenta, wartoÅ›ci ustawiane sÄ… na zero, wykres siÄ™ nie rysuje
+				JOptionPane.showMessageDialog(frame, "Nie moÅ¼na obliczyÄ‡ parametrÃ³w");
 				textMinimum.setText(Integer.toString(0));
 				textMaksimum.setText(Integer.toString(0));
 				textSrednia.setText(Integer.toString(0));
@@ -409,7 +403,7 @@ public class UI implements ActionListener, MouseListener{
 
 
 		}
-		// anulowanie wpisywania powoduje usuniêcie wartoœci z pól i zablokowanie mo¿liwoœci dodania wpisu
+		// anulowanie wpisywania powoduje usuniÄ™cie wartoÅ›ci z pÃ³l i zablokowanie moÅ¼liwoÅ›ci dodania wpisu
 		if(z == btnAnuluj2) {
 			zezwolenieOblicz(false);
 			zezwolenieBadanie(false);
@@ -420,7 +414,7 @@ public class UI implements ActionListener, MouseListener{
 
 	}
 
-	// sprawdzenie czy s³owo zawiera same litery, jeœli zawiera coœ poza liter¹ zwraca true
+	// sprawdzenie czy sÅ‚owo zawiera same litery, jeÅ›li zawiera coÅ› poza literÄ… zwraca true
 	public boolean nieZawieraLiter(String slowo) {
 
 		for(int i=0; i <= (slowo.length()-1); i++) {
@@ -431,7 +425,7 @@ public class UI implements ActionListener, MouseListener{
 
 	}
 
-	// sprawdzenie czy s³owo zawiera same cyfry, jeœli zawiera coœ poza cyfr¹ zwraca true
+	// sprawdzenie czy sÅ‚owo zawiera same cyfry, jeÅ›li zawiera coÅ› poza cyfrÄ… zwraca true
 	public boolean nieZawieraCyfr(String slowo) {
 
 		for(int i = 0  ; i <= (slowo.length()-1) ; i++) {
@@ -442,14 +436,14 @@ public class UI implements ActionListener, MouseListener{
 
 	}
 
-	// sprawdzanie poprawnoœci wprowadzanych danych pacjenta
+	// sprawdzanie poprawnoÅ›ci wprowadzanych danych pacjenta
 	public boolean sprawdzDane() {
 		String imie = textName.getText();
 		String nazwisko = textSurname.getText();
 		String PESEL = textPesel.getText();
 
 		if(imie.isEmpty() || imie.trim().isEmpty() || nieZawieraLiter(imie)) {
-			JOptionPane.showMessageDialog(frame, "Niepoprawne imiê");
+			JOptionPane.showMessageDialog(frame, "Niepoprawne imiÃª");
 			return false;
 		}
 		if(nazwisko.isEmpty() || nazwisko.trim().isEmpty() || nieZawieraLiter(nazwisko)) {
@@ -463,22 +457,22 @@ public class UI implements ActionListener, MouseListener{
 		return true;
 	}
 
-	// sprawdzanie poprawnoœci wprowadzanych danych badania
+	// sprawdzanie poprawnoÅ“ci wprowadzanych danych badania
 	public boolean sprawdzBadanie() {
 		int cisSkurcz;
 		int cisRozkurcz;
 		int tetno;
 
 		if(txtTetno.getText().isEmpty() || txtTetno.getText().trim().isEmpty() || nieZawieraCyfr(txtTetno.getText())) {
-			JOptionPane.showMessageDialog(frame, "Niepoprawnie wpisane têtno");
+			JOptionPane.showMessageDialog(frame, "Niepoprawnie wpisane tÃªtno");
 			return false;
 		}
 		if(txtCisnienieskurcz.getText().isEmpty() || txtCisnienieskurcz.getText().trim().isEmpty() || nieZawieraCyfr(txtCisnienieskurcz.getText())) {
-			JOptionPane.showMessageDialog(frame, "Niepoprawnie wpisane ciœnienie skurczowe");
+			JOptionPane.showMessageDialog(frame, "Niepoprawnie wpisane ciÅ“nienie skurczowe");
 			return false;
 		}
 		if(txtCisnienie_rozkurcz.getText().isEmpty() || txtCisnienie_rozkurcz.getText().trim().isEmpty() || nieZawieraCyfr(txtCisnienie_rozkurcz.getText())) {
-			JOptionPane.showMessageDialog(frame, "Niepoprawnie wpisane ciœnienie rozkurczowe");
+			JOptionPane.showMessageDialog(frame, "Niepoprawnie wpisane ciÅ“nienie rozkurczowe");
 			return false;
 		}
 
@@ -487,15 +481,15 @@ public class UI implements ActionListener, MouseListener{
 		tetno = Integer.parseInt(txtTetno.getText());
 
 		if(tetno<20 || tetno>200) {
-			JOptionPane.showMessageDialog(frame, "Têtno spoza zakresu!"); 
+			JOptionPane.showMessageDialog(frame, "TÃªtno spoza zakresu!"); 
 			return false;
 		}
 		if(cisSkurcz<60 || cisSkurcz > 250) {
-			JOptionPane.showMessageDialog(frame, "Ciœnienie skurczowe spoza zakresu!");
+			JOptionPane.showMessageDialog(frame, "CiÅ“nienie skurczowe spoza zakresu!");
 			return false;
 		}
 		if(cisRozkurcz<30 || cisRozkurcz>150) {
-			JOptionPane.showMessageDialog(frame, "Ciœnienie rozkurczowe spoza zakresu!");
+			JOptionPane.showMessageDialog(frame, "CiÅ“nienie rozkurczowe spoza zakresu!");
 			return false;
 		}
 		return true;
@@ -511,7 +505,7 @@ public class UI implements ActionListener, MouseListener{
 
 	}
 
-	// odblokowanie pól dotycz¹cych dodawnania badania
+	// odblokowanie pÃ³l dotyczÂ¹cych dodawnania badania
 	public static void  zezwolenieBadanie(boolean zezwol) {
 		txtTetno.setEditable(zezwol);
 		txtCisnienieskurcz.setEditable(zezwol);
@@ -521,7 +515,7 @@ public class UI implements ActionListener, MouseListener{
 
 	}
 
-	// odblokowanie pól dotycz¹cych dodawania pacjenta
+	// odblokowanie pÃ³l dotyczÂ¹cych dodawania pacjenta
 	public static void zezwoleniePacjent(boolean zezwol) {
 
 		textName.setEditable(zezwol);
@@ -532,7 +526,7 @@ public class UI implements ActionListener, MouseListener{
 
 	}
 
-	// odblokowanie pól dotycz¹cych obliczania parametrów
+	// odblokowanie pÃ³l dotyczÂ¹cych obliczania parametrÃ³w
 	public static void zezwolenieOblicz(boolean zezwol) {
 		comboBox.setEnabled(zezwol);
 		btnOblicz.setEnabled(zezwol);
@@ -542,14 +536,14 @@ public class UI implements ActionListener, MouseListener{
 
 	}
 
-	// szukanie minimum w liœcie 
+	// szukanie minimum w liÅ“cie 
 	public int znajdzMinimum(long pesel, String wybrane) {	
 		daneBadania = bazaPacjentow.pobierzDaneBadanie(pesel, wybrane);
 		int minimum = Collections.min(daneBadania);
 		return minimum;
 	}
 
-	// obliczanie œrednie z wartoœci z listy
+	// obliczanie Å“rednie z wartoÅ“ci z listy
 	public int obliczSrednia(long pesel, String wybrane) {
 		daneBadania = bazaPacjentow.pobierzDaneBadanie(pesel, wybrane);
 		int ilosc = daneBadania.size();
@@ -560,7 +554,7 @@ public class UI implements ActionListener, MouseListener{
 		return srednia;
 	}
 
-	// szukanie maksimum w liœcie
+	// szukanie maksimum w liÅ“cie
 	public int znajdzMaksimum(long pesel, String wybrane) {
 		daneBadania = bazaPacjentow.pobierzDaneBadanie(pesel, wybrane);
 		int maksimum = Collections.max(daneBadania);
@@ -589,13 +583,13 @@ public class UI implements ActionListener, MouseListener{
 		dataset.addSeries(seria);
 
 		JFreeChart chart = ChartFactory.createXYLineChart(
-				"Wykres parametru: " + wybrane , // tytu³
-				"Kolejne pomiary", // oœ x - nazwa
-				wybrane, // oœ y - nazwa
+				"Wykres parametru: " + wybrane , // tytuÂ³
+				"Kolejne pomiary", // oÅ“ x - nazwa
+				wybrane, // oÅ“ y - nazwa
 				dataset, // zestaw danych
 				PlotOrientation.VERTICAL, // orientacja wykresu
 				false, // pokazywanie legendy
-				true, // u¿ywanie tootips
+				true, // uÂ¿ywanie tootips
 				false // 
 				);
 
@@ -608,13 +602,13 @@ public class UI implements ActionListener, MouseListener{
 		chartPanel.setPreferredSize(new Dimension(800, 500));
 		contentPane.add(chartPanel);
 
-		frame2.setTitle("Wykres przedstawiaj¹cy dane: " + wybrane);
+		frame2.setTitle("Wykres przedstawiajÂ¹cy dane: " + wybrane);
 		frame2.pack();
 		frame2.setVisible (true);
 
 	}
 
-	// wybranie u¿ytkownika odblokowuje mo¿liwoœæ dodania badania lu obliczenia wartoœci
+	// wybranie uÂ¿ytkownika odblokowuje moÂ¿liwoÅ“Ã¦ dodania badania lu obliczenia wartoÅ“ci
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
